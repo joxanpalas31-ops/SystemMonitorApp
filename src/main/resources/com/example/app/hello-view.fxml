@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Imports για JavaFX components -->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<!-- Κεντρικό container της εφαρμογής -->
+<VBox prefWidth="1280" prefHeight="850"
+      styleClass="main-window"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.app.HelloController">
+
+    <!-- Φόρτωση CSS -->
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+
+    <!-- ================= HEADER ================= -->
+    <HBox styleClass="header-panel" spacing="10" alignment="CENTER_LEFT">
+
+        <!-- Padding του header -->
+        <padding>
+            <Insets left="15" right="10" top="5" bottom="5"/>
+        </padding>
+
+        <!-- Τίτλος εφαρμογής -->
+        <Label styleClass="main-title" text="⚙ System Monitor Pro" />
+
+        <!-- Spacer για να σπρώξει τα υπόλοιπα δεξιά -->
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!-- Ώρα -->
+        <Label fx:id="timeLabel"
+               styleClass="stat-label"
+               text="--:-- --" />
+
+        <!-- Διαχωριστική γραμμή -->
+        <Separator orientation="VERTICAL" prefHeight="20" />
+
+        <!-- Κουμπί ρυθμίσεων -->
+        <Button fx:id="settingsButton"
+                text="Settings"
+                onAction="#handleSettings"
+                styleClass="settings-button" />
+    </HBox>
+
+    <!-- ================= MAIN GRID ================= -->
+    <GridPane hgap="15.0" vgap="15.0" VBox.vgrow="ALWAYS">
+
+        <!-- Padding grid -->
+        <padding>
+            <Insets top="15.0" bottom="15.0" left="15.0" right="15.0"/>
+        </padding>
+
+        <!-- Κατανομή στηλών -->
+        <columnConstraints>
+            <ColumnConstraints percentWidth="25.0"/>
+            <ColumnConstraints percentWidth="37.5"/>
+            <ColumnConstraints percentWidth="37.5"/>
+        </columnConstraints>
+
+        <!-- ========== LEFT PANEL (QUICK LOOK) ========== -->
+        <VBox spacing="10.0"
+              GridPane.columnIndex="0"
+              GridPane.rowIndex="0"
+              GridPane.rowSpan="3">
+
+            <VBox styleClass="dashboard-panel" VBox.vgrow="ALWAYS">
+
+                <!-- CPU Quick -->
+                <Label styleClass="panel-title" text="CPU QUICK LOOK" />
+                <Label fx:id="cpuPercentSmall" styleClass="stat-value" text="0%" />
+                <ProgressBar fx:id="cpuBarSmall" progress="0.0" maxWidth="Infinity" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- GPU Quick -->
+                <Label styleClass="panel-title" text="GPU QUICK LOOK" />
+                <Label fx:id="gpuUsageSmall" styleClass="stat-value" text="0%" />
+                <ProgressBar fx:id="gpuBarSmall" progress="0.0" maxWidth="Infinity" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- RAM Quick -->
+                <Label styleClass="panel-title" text="RAM QUICK LOOK" />
+                <Label fx:id="ramValueSmall" styleClass="stat-value" text="0 GB" />
+                <ProgressBar fx:id="ramBarSmall" progress="0.0" maxWidth="Infinity" />
+            </VBox>
+        </VBox>
+
+        <!-- ========== CPU DETAILS ========== -->
+        <VBox styleClass="dashboard-panel"
+              GridPane.columnIndex="1"
+              GridPane.rowIndex="0">
+
+            <Label styleClass="panel-title" text="■ CPU DETAILS" />
+
+            <!-- Μοντέλο CPU -->
+            <Label fx:id="cpuModelLabel"
+                   text="Loading..."
+                   styleClass="stat-label" />
+
+            <!-- Χρήση CPU -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="cpuPercentMain"
+                       styleClass="big-number"
+                       text="0%" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <ProgressBar fx:id="cpuBarMain"
+                             progress="0.0"
+                             prefWidth="200" />
+            </HBox>
+        </VBox>
+
+        <!-- ========== GPU DETAILS ========== -->
+        <VBox styleClass="dashboard-panel"
+              GridPane.columnIndex="1"
+              GridPane.rowIndex="1">
+
+            <Label styleClass="panel-title" text="🎮 GPU DETAILS" />
+
+            <!-- Όνομα GPU -->
+            <Label fx:id="gpuModelLabel"
+                   text="Detecting..."
+                   styleClass="stat-label" />
+
+            <!-- Χρήση GPU -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="gpuUsageMain"
+                       styleClass="big-number"
+                       text="0%" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <ProgressBar fx:id="gpuBarMain"
+                             progress="0.0"
+                             prefWidth="200" />
+            </HBox>
+
+            <!-- VRAM -->
+            <Label fx:id="gpuVramLabel"
+                   text="VRAM: -- / -- GB"
+                   styleClass="stat-label" />
+        </VBox>
+
+        <!-- ========== MEMORY DETAILS ========== -->
+        <VBox styleClass="dashboard-panel"
+              GridPane.columnIndex="2"
+              GridPane.rowIndex="0">
+
+            <Label styleClass="panel-title" text="■ MEMORY DETAILS" />
+
+            <!-- Χρήση RAM -->
+            <Label fx:id="ramDetailLabel"
+                   text="Used / Total"
+                   styleClass="stat-label" />
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="ramPercentMain"
+                       styleClass="big-number"
+                       text="0%" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <ProgressBar fx:id="ramBarMain"
+                             progress="0.0"
+                             prefWidth="200" />
+            </HBox>
+        </VBox>
+
+        <!-- ========== DISK DETAILS ========== -->
+        <VBox styleClass="dashboard-panel"
+              GridPane.columnIndex="2"
+              GridPane.rowIndex="1">
+
+            <Label styleClass="panel-title" text="💾 DISK USAGE (C:)" />
+
+            <!-- Χώρος δίσκου -->
+            <Label fx:id="diskSpaceLabel"
+                   text="Calculating..."
+                   styleClass="stat-label" />
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="diskPercentLabel"
+                       styleClass="big-number"
+                       text="0%" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <ProgressBar fx:id="diskBar"
+                             progress="0.0"
+                             prefWidth="150" />
+            </HBox>
+        </VBox>
+
+        <!-- ========== SYSTEM + NETWORK ========== -->
+        <HBox spacing="15"
+              GridPane.columnIndex="1"
+              GridPane.rowIndex="2"
+              GridPane.columnSpan="2">
+
+            <!-- System info -->
+            <VBox styleClass="dashboard-panel" HBox.hgrow="ALWAYS">
+                <Label styleClass="panel-title" text="▼ SYSTEM INFO" />
+
+                <Label fx:id="osLabel"
+                       text="OS: Windows"
+                       styleClass="stat-label" />
+
+                <Label fx:id="uptimeLabel"
+                       text="Uptime: 0h 0m"
+                       styleClass="stat-label" />
+            </VBox>
+
+            <!-- Network -->
+            <VBox styleClass="dashboard-panel" HBox.hgrow="ALWAYS">
+                <Label styleClass="panel-title" text="🌐 NETWORK MONITOR" />
+
+                <HBox spacing="40" alignment="CENTER">
+
+                    <!-- Download speed -->
+                    <Label fx:id="downSpeedLabel"
+                           text="D: 0.0 KB/s"
+                           style="-fx-text-fill: #3fb950; -fx-font-weight: bold;" />
+
+                    <!-- Upload speed -->
+                    <Label fx:id="upSpeedLabel"
+                           text="U: 0.0 KB/s"
+                           style="-fx-text-fill: #2f81f7; -fx-font-weight: bold;" />
+                </HBox>
+            </VBox>
+        </HBox>
+    </GridPane>
+
+    <!-- ================= FOOTER ================= -->
+    <HBox fx:id="footerBar"
+          styleClass="footer-panel"
+          spacing="20"
+          alignment="CENTER_RIGHT">
+
+        <padding>
+            <Insets top="10" right="20" bottom="10" left="20"/>
+        </padding>
+
+        <!-- Κατάσταση συστήματος -->
+        <Label fx:id="statusLabel"
+               text="System Healthy"
+               styleClass="status-text" />
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!-- Καθαρισμός temp -->
+        <Button text="🗑 Clean Temp Files"
+                onAction="#handleCleanTemp"
+                styleClass="clean-button" />
+    </HBox>
+</VBox>

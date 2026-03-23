@@ -1,0 +1,106 @@
+/* Το γενικό background της εφαρμογής */
+.main-window {
+    -fx-background-color: #121419;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Το Header Panel (Top Bar) */
+.header-panel {
+    -fx-background-color: #1c1f26;
+    -fx-padding: 10 20;
+    -fx-background-radius: 0 0 10 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+/* Ο τίτλος "System Monitor" */
+.main-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Το CSS για ΚΑΘΕ panel (τα σκούρα κουτάκια) */
+.dashboard-panel {
+    -fx-background-color: #1c1f26;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+/* Ο τίτλος μέσα σε κάθε panel (π.χ. ▶ CPU USAGE) */
+.panel-title {
+    -fx-text-fill: #adbac7;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 5 0;
+}
+
+/* Τα μεγάλα νούμερα (32%, 9.8 GB) */
+.big-number {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* Τα μικρά στατιστικά (Speed: 4.2 GHz κλπ) */
+.stat-label {
+    -fx-text-fill: #adbac7;
+    -fx-font-size: 11px;
+}
+.stat-value {
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Στυλ για τις ProgressBars */
+.progress-bar {
+    -fx-pref-height: 8px;
+    -fx-background-radius: 4px;
+}
+.progress-bar > .track {
+    -fx-background-color: #2d333b;
+    -fx-background-radius: 4px;
+}
+.progress-bar > .bar {
+    -fx-background-color: #2f81f7; /* Το μπλε χρώμα */
+    -fx-background-radius: 4px;
+}
+
+/* Το κουμπί Settings */
+.settings-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 15;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}
+.settings-button:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+}
+
+.clean-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f85149;
+    -fx-border-color: #f85149;
+    -fx-border-radius: 5;
+    -fx-font-weight: bold;
+    -fx-padding: 5 15;
+    -fx-cursor: hand;
+}
+
+.clean-button:hover {
+    -fx-background-color: #f85149;
+    -fx-text-fill: white;
+}
+
+.footer-panel {
+    -fx-background-color: #1c1f26;
+    -fx-background-radius: 10 10 0 0;
+}
+.status-text {
+    -fx-text-fill: #58a6ff;
+    -fx-font-size: 12px;
+}

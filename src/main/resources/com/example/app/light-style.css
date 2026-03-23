@@ -1,0 +1,70 @@
+/* Το γενικό background της εφαρμογής */
+.main-window {
+    -fx-background-color: #f0f2f5 !important;
+}
+
+/* Το Header Panel (Top Bar) */
+.header-panel {
+    -fx-background-color: #ffffff !important;
+    -fx-border-color: #d0d7de !important;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2) !important;
+}
+
+/* Ο τίτλος "System Monitor" */
+.main-title {
+    -fx-text-fill: #1b1f24 !important;
+}
+
+/* Το CSS για ΚΑΘΕ panel */
+.dashboard-panel {
+    -fx-background-color: #ffffff !important;
+    -fx-border-color: #d0d7de !important;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 0) !important;
+}
+
+/* Τίτλοι, νούμερα και στατιστικά (ΜΑΥΡΑ γράμματα) */
+.panel-title {
+    -fx-text-fill: #0969da !important; /* Ένα ωραίο μπλε για τους τίτλους */
+}
+
+.big-number, .stat-value, .label {
+    -fx-text-fill: #1b1f24 !important;
+}
+
+.stat-label {
+    -fx-text-fill: #57606a !important;
+}
+
+/* Στυλ για τις ProgressBars */
+.progress-bar > .track {
+    -fx-background-color: #ebeff2 !important;
+}
+.progress-bar > .bar {
+    -fx-background-color: #2da44e !important; /* Πράσινο για το light mode */
+}
+
+/* Τα κουμπιά στο Light Mode */
+.settings-button {
+    -fx-text-fill: #1b1f24 !important;
+    -fx-border-color: #1b1f24 !important;
+}
+
+.settings-button:hover {
+    -fx-background-color: rgba(0,0,0,0.05) !important;
+}
+
+/* Διόρθωση για το Footer στο Light Mode */
+.footer-panel { /* Αν δεν έχεις βάλει styleClass στο HBox του footer, βάλε την */
+    -fx-background-color: #ebedf0 !important;
+    -fx-border-color: #d0d7de !important;
+}
+
+/* Συγκεκριμένα για το label του status */
+#statusLabel { /* Χρησιμοποιούμε το ID αν το έχεις ορίσει έτσι */
+    -fx-text-fill: #1b1f24 !important;
+}
+
+/* Ή γενικά για όλα τα labels που μπορεί να ξέμειναν */
+.stat-label, .label {
+    -fx-text-fill: #1b1f24 !important;
+}
